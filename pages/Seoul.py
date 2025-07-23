@@ -10,11 +10,19 @@ parent_dir = os.path.dirname(current_path)
 file_path = os.path.join(parent_dir, 'data', 'seoul_home_price.csv')
 
 df = pd.read_csv(file_path, encoding='cp949', header=15)
-st.write(df.head())
-st.write(df.columns)
 
 if '시군구' in df.columns:
     df['구'] = df['시군구'].str.extract(r'(\S+구)', expand=False)
+
+area = '계약면적(㎡)'
+if area in df.columns:
+    df[area] = pd.to_numeric(
+        df[area].astype(int),
+        errors='coerce'
+    )
+    df.dropna(subset=[area], inplace=True)
+
+    df = df[df[area] < 50]
 
 price_col = '보증금(만원)'
 
