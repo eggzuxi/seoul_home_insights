@@ -1,7 +1,5 @@
 ## 🏠 Home Insights
 
----
-
 수도권 부동산 가격 데이터 분석 대시보드  
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=Python&logoColor=white)
